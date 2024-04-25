@@ -1,121 +1,41 @@
 meta:
   id: game_dat
   endian: le
-enums:
-  version_header:
-    0: 'v2'
-    0x55: 'v3'
-  version_footer:
-    0xc2: 'v2'
-    0xc3: 'v3_0'
-    0xc4: 'v3_3'
-  fps:
-    30: 'f30'
-    60: 'f60'
-  tile_size:
-    16: 't16x16' 
-    32: 't32x32' 
-    40: 't40x40' 
-    48: 't48x48'
-  midi_source:
-    0: 'hardware'
-    1: 'software'
-    2: 'disabled'
-  venable:
-    0: 'disabled'
-    1: 'enabled'
-  character_directions:
-    4: 'd4'
-    8: 'd8'
-  character_animation_patterns:
-    3: 'p3'
-    5: 'p5'
-  character_animation:
-    0: 'back_and_forth'
-    1: 'loop'
-  character_movement_width:
-    0: 'square0_5'
-    1: 'square1'
-  anti_aliasing:
-    0: 'enabled'
-    1: 'disabled'
-    2: 'disabled_double_width'
-  move_speed:
-    4: 'speed_1x'
-    5: 'speed_1_25x'
-    6: 'speed_1_5x'
-    7: 'speed_1_75x'
-    8: 'speed_2x'
-    9: 'custom'
-  language:
-    1: 'japanese'
-    2: 'hangul'
-    3: 'traditional_chinese'
-    4: 'simplified_chinese'
-    5: 'english'
-    6: 'western_european'
-  image_scale:
-    0: 'rough'
-    1: 'smooth'
-  inactive_behavior:
-    0: 'pause'
-    1: 'running'
-  system_language:
-    0: 'japanese'
-    1: 'english'
-  screen_scale:
-    1: 'scale_1x'
-    2: 'scale_2x'
-    3: 'scale_3x'
+  imports:
+  - common
 types:
-  vstr:
-    seq:
-      - id: len
-        type: u4
-      - id: str
-        type: strz
-        size: len
-        encoding: 'UTF-8'
-  vstr_sjis:
-    seq:
-      - id: len
-        type: u4
-      - id: str
-        type: strz
-        size: len
-        encoding: 'Shift-JIS'
   record_u8_settings:
     seq:
     - id: tile_size
       type: u1
-      enum: tile_size
+      enum: common::tile_size
     - id: character_directions_image
       type: u1
-      enum: character_directions
+      enum: common::character_directions
     - id: character_directions_move
       type: u1
-      enum: character_directions
+      enum: common::character_directions
     - id: guruguru_enabled
       type: u1
-      enum: venable
+      enum: common::venable
     - id: fps
       type: u1
-      enum: fps
+      enum: common::fps
     - id: character_shadow
       type: u1
-      enum: venable
+      enum: common::venable
     - id: midi_source
       type: u1
-      enum: midi_source
+      enum: common::midi_source
     - id: character_animation_patterns
       type: u1
-      enum: character_animation_patterns
+      enum: common::character_animation_patterns
     - id: character_movement_width
       type: u1
-      enum: character_movement_width
+      enum: common::character_movement_width
     - id: character_movement_hitbox
       type: u1
-      enum: character_movement_width
+      enum: common::character_movement_width
     - id: text_horizontal_padding
       type: u1
     - id: text_line_spacing
@@ -126,51 +46,51 @@ types:
       type: u1
     - id: anti_aliasing
       type: u1
-      enum: anti_aliasing
+      enum: common::anti_aliasing
     - id: move_speed_event
       type: u1
-      enum: move_speed
+      enum: common::move_speed
     - id: move_speed_hero_allies
       type: u1
-      enum: move_speed
+      enum: common::move_speed
     - id: in_game_language
       type: u1
-      enum: language
+      enum: common::language
     - id: image_scaling_method
       type: u1
-      enum: image_scale
+      enum: common::image_scale
     - id: inactive_window_behavior
       type: u1
-      enum: inactive_behavior
+      enum: common::inactive_behavior
     - id: system_language
       type: u1
-      enum: system_language
+      enum: common::system_language
     - id: unknown_2
       type: u1
       if: _io.size == 35
     - id: pro_enable_f4
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: pro_enable_f5
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: pro_enable_f8
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: pro_enable_f11
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: pro_enable_f12
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: pro_enable_prtscr
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: unknown_3
       type: u1
@@ -186,64 +106,64 @@ types:
       if: _io.size == 35
     - id: pro_screen_scale
       type: u1
-      enum: screen_scale
+      enum: common::screen_scale
       if: _io.size == 35
     - id: pro_loading_fadein
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
     - id: pro_loading_fadeout
       type: u1
-      enum: venable
+      enum: common::venable
       if: _io.size == 35
   record_string_settings_v3:
     seq:
     - id: game_title
-      type: vstr
+      type: common::t_str
     - id: serial
-      type: vstr
+      type: common::t_str
     - id: encryption_key
-      type: vstr
+      type: common::t_str
     - id: font_base
-      type: vstr
+      type: common::t_str
     - id: font_sub1
-      type: vstr
+      type: common::t_str
     - id: font_sub2
-      type: vstr
+      type: common::t_str
     - id: font_sub3
-      type: vstr
+      type: common::t_str
     - id: starting_hero_graphic
-      type: vstr
+      type: common::t_str
     - id: game_subtitle
-      type: vstr
+      type: common::t_str
     - id: pro_game_loadingpic
-      type: vstr
+      type: common::t_str
     - id: pro_game_loading_gauge
-      type: vstr
+      type: common::t_str
     - id: pro_title_during_loading
-      type: vstr
+      type: common::t_str
     - id: pro_title_during_gameplay
-      type: vstr
+      type: common::t_str
   record_string_settings_v2:
     seq:
     - id: game_title
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: serial
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: encryption_key
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: font_base
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: font_sub1
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: font_sub2
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: font_sub3
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: starting_hero_graphic
-      type: vstr_sjis
+      type: common::t_str_sjis
     - id: unknown
-      type: vstr
+      type: common::t_str
   record_u16_settings:
     seq:
     - id: len
@@ -317,7 +237,7 @@ seq:
     contents: [0, 'W', 0, 0, 'O', 'L', 0, 'F', 'M']
   - id: version_header
     type: u1
-    enum: version_header
+    enum: common::version_header
   - id: u8_settings_len
     type: u4
   - id: u8_settings
@@ -329,8 +249,8 @@ seq:
     type:
       switch-on: version_header
       cases:
-        version_header::v3: record_string_settings_v3
-        version_header::v2: record_string_settings_v2
+        common::version_header::v3: record_string_settings_v3
+        common::version_header::v2: record_string_settings_v2
   - id: filesize
     type: u4
     valid: _io.size - 1
@@ -346,4 +266,4 @@ seq:
     type: static_randoms
   - id: footer
     type: u1
-    enum: version_footer
+    enum: common::version_footer

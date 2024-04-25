@@ -1,23 +1,9 @@
 meta:
   id: database_dat
   endian: le
-
-enums:
-  data_id_method:
-    0: 'manual'
-    1: 'same_as_first_string_data'
-    2: 'same_as_preceding_type_data_id'
-    10000: 'from_type_in_db'
-  
+  imports:
+  - common
 types:
-  vstr:
-    seq:
-      - id: len
-        type: u4
-      - id: str
-        type: strz
-        size: len
-        encoding: 'UTF-8'
   vdata:
     params:
     - id: property_block1_count
@@ -30,7 +16,7 @@ types:
       repeat: expr
       repeat-expr: property_block1_count
     - id: string_block
-      type: vstr
+      type: common::t_str
       repeat: expr
       repeat-expr: property_block2_count
 # used for pretty print the data, very laggy. 
@@ -40,6 +26,7 @@ types:
       type: property_output(_index)
       repeat: expr
       repeat-expr: _parent.property_count
+
   property_output:
     params:
     - id: i
@@ -58,7 +45,7 @@ types:
       contents: [0xfe, 0xff, 0xff, 0xff]
     - id: data_id_method
       type: u4
-      enum: data_id_method
+      enum: common::data_id_method
     - id: property_count
       type: u4
     - id: property_position
@@ -92,7 +79,12 @@ types:
         value: '(i == 0 ? (block == 1 ? 1 : 0) : (block == 1 ? _parent.property_position[i - 1].sum_block1 + 1 : _parent.property_position[i - 1].sum_block1)).as<u4>'
 seq:
   - id: magic
-    contents: [0, 'W', 0, 0, 'O', 'L', 'U', 'F', 'M', 0]
+    contents: [0, 'W', 0, 0, 'O', 'L']
+  - id: version_header
+    type: u1
+    enum: common::version_header
+  - id: magic2
+    contents: ['F', 'M', 0]
   - id: version
     type: u1
   - id: length
