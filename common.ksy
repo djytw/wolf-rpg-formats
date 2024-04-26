@@ -35,6 +35,11 @@ types:
         type: u4
         repeat: expr
         repeat-expr: len
+  # todo
+  magic_number:
+    seq:
+    - id: raw
+      type: u4
 enums:
   version_header:
     0: 'v2'
@@ -111,3 +116,31 @@ enums:
     1: 'load_from_file'
     2: 'load_from_database'
     3: 'manual'
+  frequency:
+    0: 'every_frame'
+    1: 'very_short'
+    2: 'short'
+    3: 'medium'
+    4: 'long'
+    5: 'very_long'
+  move_speed:
+    0: 'speed0_slowest'
+    1: 'speed1'
+    2: 'speed2'
+    3: 'speed3_standard'
+    4: 'speed4'
+    5: 'speed5'
+    6: 'speed6_fastest'
+  operator:
+    0: 'greater_than'
+    1: 'greater_or_equal'
+    2: 'equal'
+    3: 'less_or_equal'
+    4: 'less_than'
+    5: 'not_equal'
+    6: 'bitwise_and'
+  graphic_render_mode:
+    0: 'normal'
+    1: 'multiply'
+    2: 'add'
+    3: 'substract'
