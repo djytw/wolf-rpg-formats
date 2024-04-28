@@ -28,21 +28,23 @@ types:
       type: u4
     instances:
       string_1_enabled:
-        value: (raw >> 12) & 1
+        value: ((raw >> 12) & 1).as<b1>
       string_2_enabled:
-        value: (raw >> 13) & 1
+        value: ((raw >> 13) & 1).as<b1>
       string_3_enabled:
-        value: (raw >> 14) & 1
+        value: ((raw >> 14) & 1).as<b1>
       string_4_enabled:
-        value: (raw >> 15) & 1
+        value: ((raw >> 15) & 1).as<b1>
       string_5_enabled:
-        value: (raw >> 16) & 1
+        value: ((raw >> 16) & 1).as<b1>
       string_count:
         value: (raw >> 4) & 0xf
       number_count:
         value: (raw >> 0) & 0xf
       count:
         value: (string_count + number_count)
+      return_value_enabled:
+        value: ((raw >> 24) & 1).as<b1>
   call_common_by_name:
     seq: 
     - id: na
@@ -54,6 +56,9 @@ types:
       type: s4
       repeat: expr
       repeat-expr: param_status.count
+    - id: return_variable
+      type: common::magic_number
+      if: param_status.return_value_enabled
   call_event:
     seq: 
     - id: event_id
@@ -88,6 +93,8 @@ types:
         any-of: [0,1]
     - id: condition_count
       type: b4
+    - id: na
+      contents: [0, 0, 0]
     - id: conditions
       type: condition_number__condition
       repeat: expr

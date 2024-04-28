@@ -35,6 +35,14 @@ types:
         type: u4
         repeat: expr
         repeat-expr: len
+  t_s4_array:
+    seq:
+      - id: len
+        type: s4
+      - id: data
+        type: u4
+        repeat: expr
+        repeat-expr: len
   # todo
   magic_number:
     seq:
