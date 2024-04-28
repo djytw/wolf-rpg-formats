@@ -2,6 +2,10 @@
 meta:
   id: common
   endian: le
+  title: WolfRPG common structures and enums, not used for file parsing
+  application: WolfRPG
+  file-extension: dat
+  license: MIT
 types:
   t_str:
     seq:
@@ -43,7 +47,7 @@ types:
         type: u4
         repeat: expr
         repeat-expr: len
-  # todo
+  # TODO
   magic_number:
     seq:
     - id: raw

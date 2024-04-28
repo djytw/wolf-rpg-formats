@@ -1,6 +1,10 @@
 meta:
   id: database_project_old
   endian: le
+  title: WolfRPG SysDataBaseBasic.project file
+  application: WolfRPG
+  file-extension: project
+  license: MIT
   imports: 
   - common
 

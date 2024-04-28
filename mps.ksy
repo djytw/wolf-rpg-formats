@@ -1,5 +1,9 @@
 meta:
-  id: msp
+  id: mps
+  title: WolfRPG MapData .mps file
+  application: WolfRPG
+  file-extension: mps
+  license: MIT
   endian: le
   imports: 
   - common

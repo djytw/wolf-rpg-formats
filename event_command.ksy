@@ -1,5 +1,8 @@
 meta:
   id: event_command
+  title: WolfRPG event_command-related structures, not used for file parsing
+  application: WolfRPG
+  license: MIT
   endian: le
   imports: 
   - common

@@ -1,5 +1,9 @@
 meta:
   id: game_dat
+  title: WolfRPG Game.dat file
+  application: WolfRPG
+  file-extension: dat
+  license: MIT
   endian: le
   imports:
   - common

@@ -1,6 +1,10 @@
 meta:
   id: commonevent_dat
   endian: le
+  title: WolfRPG CommonEvent.dat file
+  application: WolfRPG
+  file-extension: dat
+  license: MIT
   imports:
   - common
   - event_command

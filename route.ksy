@@ -1,5 +1,8 @@
 meta:
   id: route
+  title: WolfRPG route-related structures, not used for file parsing
+  application: WolfRPG
+  license: MIT
   endian: le
   imports: 
   - common

@@ -1,5 +1,9 @@
 meta:
   id: tilesetdata_dat
+  title: WolfRPG TileSetData.dat file
+  application: WolfRPG
+  file-extension: dat
+  license: MIT
   endian: le
   imports:
   - common
